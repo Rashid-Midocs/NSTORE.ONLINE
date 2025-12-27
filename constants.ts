@@ -1,7 +1,16 @@
+import { Category, Product, Vendor, Order, Review, UserProfile } from './types';
 
-import { Category, Product, Vendor, Order, Review } from './types';
+export const MOCK_USER: UserProfile = {
+  id: 'u123',
+  name: 'Ahmed Al-Kuwaiti',
+  email: 'ahmed@nstore.online',
+  phone: '+965 9000 1234',
+  isSubscribed: true,
+  joinDate: '2023-08-12',
+  points: 450,
+  avatar: 'https://i.pravatar.cc/150?u=u123'
+};
 
-// Added status property to VENDORS to satisfy type requirement as defined in types.ts
 export const VENDORS: Vendor[] = [
   { id: 'v1', name: 'Al-Ghanim Tech', rating: 4.8, location: 'Shuwaikh', joinedDate: '2023-01-15', totalSales: 15400, status: 'Active' },
   { id: 'v2', name: 'Kuwait Fashion Hub', rating: 4.5, location: 'Salmiya', joinedDate: '2023-03-22', totalSales: 8200, status: 'Active' },
@@ -12,15 +21,15 @@ export const VENDORS: Vendor[] = [
 const MOCK_REVIEWS: Review[] = [
   { id: 'r1', userName: 'Faisal K.', rating: 5, comment: 'Excellent quality and fast delivery in Kuwait!', date: '2023-10-01' },
   { id: 'r2', userName: 'Muneera A.', rating: 4, comment: 'Very good product, but the box was slightly damaged.', date: '2023-10-05' },
-  { id: 'r3', userName: 'Hamad S.', rating: 5, comment: 'Best price I found for this model. Recommended!', date: '2023-10-10' },
 ];
 
 export const CATEGORY_HIERARCHY: Record<Category, string[]> = {
-  [Category.DIGITAL]: ['E-Books', 'Software', 'Gift Cards'],
-  [Category.CLOTHING]: ['Men', 'Women', 'Kids', 'Accessories'],
-  [Category.HARDWARE]: ['Tools', 'Safety Gear', 'Fasteners'],
+  [Category.DIGITAL]: ['E-Books', 'Software', 'Gift Cards', 'Gaming Credits'],
+  [Category.CLOTHING]: ['Men', 'Women', 'Kids', 'Accessories', 'Footwear'],
+  [Category.HARDWARE]: ['Tools', 'Safety Gear', 'Fasteners', 'Power Tools'],
   [Category.ELECTRICAL]: ['Lighting', 'Cables', 'Pipes', 'Fixtures'],
-  [Category.ELECTRONICS]: ['Smartphones', 'Laptops', 'Kitchen Appliances', 'TVs'],
+  [Category.ELECTRONICS]: ['Smartphones', 'Laptops', 'Kitchen Appliances', 'TVs', 'Audio'],
+  [Category.LIFESTYLE]: ['Home Decor', 'Furniture', 'Kitchenware', 'Gifts'],
 };
 
 export const PRODUCTS: Product[] = [
@@ -32,123 +41,123 @@ export const PRODUCTS: Product[] = [
     category: Category.ELECTRONICS,
     subcategory: 'TVs',
     description: 'Cinematic experience with 4K resolution and smart features.',
-    detailedDescription: 'Experience crystal clear visuals with our 55-inch 4K Ultra HD Smart TV. Features include built-in Netflix, YouTube, 3 HDMI ports, and voice control remote.',
-    images: ['https://picsum.photos/seed/tv1/800/800', 'https://picsum.photos/seed/tv2/800/800', 'https://picsum.photos/seed/tv3/800/800'],
-    vendorId: 'v1',
-    vendor: VENDORS[0],
-    rating: 4.7,
-    reviewCount: 128,
-    isFeatured: true,
-    stock: 0, // Set to 0 to demonstrate "Out of Stock" feature
-    sku: 'ELEC-TV-55',
-    reviews: MOCK_REVIEWS
+    detailedDescription: 'Experience crystal clear visuals with our 55-inch 4K Ultra HD Smart TV.',
+    images: ['https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?q=80&w=800&auto=format&fit=crop'],
+    vendorId: 'v1', vendor: VENDORS[0], rating: 4.7, reviewCount: 128, isFeatured: true, stock: 10, sku: 'ELEC-TV-55', reviews: MOCK_REVIEWS
   },
   {
-    id: 'p2',
-    name: 'Pro Laptop 16GB RAM',
-    price: 450.000,
+    id: 'p8',
+    name: 'Noise Cancelling Headphones Pro',
+    price: 85.000,
+    discountPrice: 72.000,
     category: Category.ELECTRONICS,
-    subcategory: 'Laptops',
-    description: 'High performance laptop for professionals.',
-    detailedDescription: 'Powered by the latest i7 processor, this laptop handles heavy multitasking with ease. 16GB RAM, 512GB SSD.',
-    images: ['https://picsum.photos/seed/laptop1/800/800', 'https://picsum.photos/seed/laptop2/800/800'],
-    vendorId: 'v1',
-    vendor: VENDORS[0],
-    rating: 4.9,
-    reviewCount: 56,
-    isFeatured: true,
-    stock: 5,
-    sku: 'ELEC-LAP-PRO',
-    reviews: [MOCK_REVIEWS[0]]
+    subcategory: 'Audio',
+    description: 'Immersive sound with industry-leading noise cancellation.',
+    detailedDescription: 'The ultimate audio companion for commuters and office workers.',
+    images: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop'],
+    vendorId: 'v1', vendor: VENDORS[0], rating: 4.9, reviewCount: 340, isFeatured: true, stock: 15, sku: 'ELEC-HEAD-PRO'
   },
   {
-    id: 'p3',
-    name: 'Premium Cotton T-Shirt',
-    price: 8.500,
-    discountPrice: 5.000,
-    category: Category.CLOTHING,
-    subcategory: 'Men',
-    description: 'Soft, breathable cotton perfect for summer.',
-    detailedDescription: '100% Organic Cotton. Pre-shrunk fabric to ensure a perfect fit after washing.',
-    images: ['https://picsum.photos/seed/shirt1/800/800', 'https://picsum.photos/seed/shirt2/800/800'],
-    vendorId: 'v2',
-    vendor: VENDORS[1],
-    rating: 4.3,
-    reviewCount: 200,
-    stock: 50,
-    sku: 'CLOTH-TSHIRT-M',
-    reviews: [MOCK_REVIEWS[1]]
+    id: 'p9',
+    name: 'NSTORE Gift Card - 50 KD',
+    price: 50.000,
+    category: Category.DIGITAL,
+    subcategory: 'Gift Cards',
+    description: 'The perfect gift for any occasion.',
+    detailedDescription: 'Instantly delivered to your email. Can be used for any product on NSTORE.',
+    images: ['https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop'],
+    vendorId: 'v4', vendor: VENDORS[3], rating: 5.0, reviewCount: 1200, isFeatured: true, stock: 999, sku: 'DIGI-GC-50'
   },
   {
-    id: 'p4',
-    name: 'Designer Summer Dress',
-    price: 25.000,
-    category: Category.CLOTHING,
-    subcategory: 'Women',
-    description: 'Elegant floral print dress.',
-    detailedDescription: 'Lightweight chiffon material with a beautiful floral pattern.',
-    images: ['https://picsum.photos/seed/dress1/800/800'],
-    vendorId: 'v2',
-    vendor: VENDORS[1],
-    rating: 4.6,
-    reviewCount: 45,
-    isFeatured: true,
-    stock: 12,
-    sku: 'CLOTH-DRESS-W',
-    reviews: [MOCK_REVIEWS[2]]
+    id: 'p10',
+    name: 'Modern Velvet Armchair',
+    price: 145.000,
+    discountPrice: 110.000,
+    category: Category.LIFESTYLE,
+    subcategory: 'Furniture',
+    description: 'Luxurious comfort for your living space.',
+    detailedDescription: 'Ergonomically designed with high-quality velvet fabric and solid wood legs.',
+    images: ['https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=800&auto=format&fit=crop'],
+    vendorId: 'v2', vendor: VENDORS[1], rating: 4.6, reviewCount: 28, isFeatured: true, stock: 4, sku: 'LIFE-CHAIR-VEL'
   },
   {
-    id: 'p5',
-    name: 'Cordless Power Drill Set',
+    id: 'p11',
+    name: 'Smart Watch Series X',
+    price: 65.000,
+    category: Category.ELECTRONICS,
+    subcategory: 'Smartphones',
+    description: 'Track your health and stay connected.',
+    detailedDescription: 'AMOLED display, heart rate monitor, sleep tracking, and 7-day battery life.',
+    images: ['https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop'],
+    vendorId: 'v1', vendor: VENDORS[0], rating: 4.4, reviewCount: 89, isFeatured: false, stock: 25, sku: 'ELEC-WATCH-X'
+  },
+  {
+    id: 'p15',
+    name: 'Mechanical Gaming Keyboard',
     price: 35.000,
     discountPrice: 28.500,
+    category: Category.ELECTRONICS,
+    subcategory: 'Audio',
+    description: 'RGB Backlit, Blue Switches for the perfect click.',
+    detailedDescription: 'Experience precise gaming and comfortable typing with our high-grade mechanical keyboard.',
+    images: ['https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800&auto=format&fit=crop'],
+    vendorId: 'v1', vendor: VENDORS[0], rating: 4.8, reviewCount: 45, isFeatured: true, stock: 20, sku: 'ELEC-KB-RGB'
+  },
+  {
+    id: 'p16',
+    name: 'Organic Cotton Summer Tee',
+    price: 12.000,
+    category: Category.CLOTHING,
+    subcategory: 'Men',
+    description: 'Breathable, eco-friendly cotton for Kuwaiti summers.',
+    detailedDescription: '100% GOTS certified organic cotton, available in multiple shades.',
+    images: ['https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=800&auto=format&fit=crop'],
+    vendorId: 'v2', vendor: VENDORS[1], rating: 4.5, reviewCount: 82, isFeatured: false, stock: 50, sku: 'CLOTH-TEE-ORG'
+  },
+  {
+    id: 'p17',
+    name: 'Pro DSLR Camera Body',
+    price: 450.000,
+    discountPrice: 410.000,
+    category: Category.ELECTRONICS,
+    subcategory: 'TVs',
+    description: 'Capture life in stunning high resolution.',
+    detailedDescription: 'Full-frame sensor with incredible low-light performance and 4K video capabilities.',
+    images: ['https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop'],
+    vendorId: 'v1', vendor: VENDORS[0], rating: 4.9, reviewCount: 15, isFeatured: true, stock: 3, sku: 'ELEC-CAM-PRO'
+  },
+  {
+    id: 'p18',
+    name: 'Electric Power Drill 18V',
+    price: 48.000,
+    category: Category.HARDWARE,
+    subcategory: 'Power Tools',
+    description: 'Heavy-duty performance for any construction job.',
+    detailedDescription: 'Brushless motor with 2.0Ah battery pack and fast charger included.',
+    images: ['https://images.unsplash.com/photo-1504148455328-c376907d081c?q=80&w=800&auto=format&fit=crop'],
+    vendorId: 'v3', vendor: VENDORS[2], rating: 4.7, reviewCount: 64, isFeatured: false, stock: 12, sku: 'HARD-DRILL-18V'
+  },
+  {
+    id: 'p13',
+    name: 'Essential Home Tool Kit',
+    price: 45.000,
     category: Category.HARDWARE,
     subcategory: 'Tools',
-    description: 'Heavy duty drill with 2 batteries included.',
-    detailedDescription: '18V Cordless Drill with 2-speed transmission. Includes carrying case.',
-    images: ['https://picsum.photos/seed/drill1/800/800', 'https://picsum.photos/seed/drill2/800/800'],
-    vendorId: 'v3',
-    vendor: VENDORS[2],
-    rating: 4.8,
-    reviewCount: 89,
-    stock: 20,
-    sku: 'HARD-DRILL-18V',
-    reviews: MOCK_REVIEWS
+    description: '150 pieces for all your DIY needs.',
+    detailedDescription: 'Includes hammer, screwdrivers, pliers, wrench, and more in a durable case.',
+    images: ['https://images.unsplash.com/photo-1581244277943-fe4a9c777189?q=80&w=800&auto=format&fit=crop'],
+    vendorId: 'v3', vendor: VENDORS[2], rating: 4.5, reviewCount: 230, isFeatured: false, stock: 40, sku: 'HARD-TOOL-KIT'
   },
   {
-    id: 'p6',
-    name: 'Smart LED Bulb (RGB)',
-    price: 4.500,
-    category: Category.ELECTRICAL,
-    subcategory: 'Lighting',
-    description: 'WiFi enabled color changing bulb.',
-    detailedDescription: 'Control your lights from anywhere with the mobile app.',
-    images: ['https://picsum.photos/seed/bulb1/800/800'],
-    vendorId: 'v3',
-    vendor: VENDORS[2],
-    rating: 4.4,
-    reviewCount: 310,
-    stock: 100,
-    sku: 'ELEC-BULB-RGB',
-    reviews: [MOCK_REVIEWS[0]]
-  },
-  {
-    id: 'p7',
-    name: 'Antivirus Software License (1 Year)',
-    price: 10.000,
-    discountPrice: 7.500,
-    category: Category.DIGITAL,
-    subcategory: 'Software',
-    description: 'Total protection for your PC and Mobile.',
-    detailedDescription: 'Instant delivery via email. Protects against malware and phishing.',
-    images: ['https://picsum.photos/seed/soft1/800/800'],
-    vendorId: 'v4',
-    vendor: VENDORS[3],
-    rating: 4.9,
-    reviewCount: 500,
-    stock: 999,
-    sku: 'DIGI-AV-1Y',
-    reviews: MOCK_REVIEWS
+    id: 'p14',
+    name: 'Designer Leather Wallet',
+    price: 18.000,
+    category: Category.CLOTHING,
+    subcategory: 'Accessories',
+    description: 'Genuine leather with RFID protection.',
+    detailedDescription: 'Slim design with space for 8 cards and cash. Hand-stitched for durability.',
+    images: ['https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=800&auto=format&fit=crop'],
+    vendorId: 'v2', vendor: VENDORS[1], rating: 4.7, reviewCount: 412, isFeatured: false, stock: 100, sku: 'CLOTH-WALL-LTH'
   }
 ];
 
@@ -156,26 +165,26 @@ export const HERO_SLIDES = [
   {
     id: 1,
     image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop',
-    title: 'Summer Collection Sale',
-    subtitle: 'Up to 50% OFF on Apparel',
-    cta: 'Shop Now',
+    title: 'Summer Fashion Drop',
+    subtitle: 'Up to 50% OFF on the hottest apparel trends in Kuwait.',
+    cta: 'Explore Now',
     category: Category.CLOTHING
   },
   {
     id: 2,
     image: 'https://images.unsplash.com/photo-1498049860654-af1a5c5668ba?q=80&w=1600&auto=format&fit=crop',
-    title: 'Next Gen Electronics',
-    subtitle: 'Upgrade your home today',
-    cta: 'Explore',
+    title: 'Future Tech is Here',
+    subtitle: 'Upgrade your digital lifestyle with high-end gadgets.',
+    cta: 'Shop Electronics',
     category: Category.ELECTRONICS
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?q=80&w=1600&auto=format&fit=crop',
-    title: 'Professional Tools',
-    subtitle: 'Build with confidence',
-    cta: 'View Deals',
-    category: Category.HARDWARE
+    image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=1600&auto=format&fit=crop',
+    title: 'Premium Home Living',
+    subtitle: 'Exquisite furniture pieces designed for comfort and class.',
+    cta: 'View Collection',
+    category: Category.LIFESTYLE
   }
 ];
 
@@ -187,34 +196,9 @@ export const MOCK_ORDERS: Order[] = [
     total: 107.500,
     status: 'Delivered',
     paymentMethod: 'KNET',
-    customer: { fullName: 'Ali Al-Salem', email: 'ali@example.com', phone: '99999999', address: 'Block 4', area: 'Salmiya' },
+    customer: { fullName: 'Ahmed Al-Kuwaiti', email: 'ahmed@nstore.online', phone: '90001234', address: 'Block 4', area: 'Salmiya' },
     items: [
       { ...PRODUCTS[0], quantity: 1 },
-      { ...PRODUCTS[5], quantity: 2 }
-    ]
-  },
-  {
-    id: 'ORD-9922',
-    date: '2023-10-26',
-    estimatedDelivery: '2023-10-29',
-    total: 28.500,
-    status: 'Processing',
-    paymentMethod: 'CASH',
-    customer: { fullName: 'Sarah Ahmed', email: 'sarah@example.com', phone: '98888888', address: 'Street 20', area: 'Hawally' },
-    items: [
-      { ...PRODUCTS[4], quantity: 1 }
-    ]
-  },
-  {
-    id: 'ORD-9923',
-    date: '2023-10-27',
-    estimatedDelivery: '2023-10-30',
-    total: 7.500,
-    status: 'Pending',
-    paymentMethod: 'KNET',
-    customer: { fullName: 'John Doe', email: 'john@example.com', phone: '55555555', address: 'Tower A', area: 'Kuwait City' },
-    items: [
-      { ...PRODUCTS[6], quantity: 1 }
     ]
   }
 ];

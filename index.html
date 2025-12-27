@@ -28,6 +28,7 @@
               'marquee': 'marquee 30s linear infinite',
               'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
               'float': 'float 6s ease-in-out infinite',
+              'slide-in': 'slideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
             },
             keyframes: {
               fadeInUp: {
@@ -49,6 +50,10 @@
               float: {
                 '0%, 100%': { transform: 'translateY(0)' },
                 '50%': { transform: 'translateY(-20px)' },
+              },
+              slideIn: {
+                '0%': { transform: 'translateX(100%)', opacity: '0' },
+                '100%': { transform: 'translateX(0)', opacity: '1' },
               }
             }
           },
@@ -60,8 +65,17 @@
       body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
       .no-scrollbar::-webkit-scrollbar { display: none; }
       .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
+      .glass { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
       .text-gradient { background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+      
+      .hero-carousel-container {
+        display: flex;
+        transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+      }
+      .hero-slide {
+        min-width: 100%;
+        height: 100vh;
+      }
     </style>
   <script type="importmap">
 {

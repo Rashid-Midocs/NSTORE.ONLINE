@@ -3,7 +3,19 @@ export enum Category {
   CLOTHING = 'Clothing & Apparels',
   HARDWARE = 'Hardware & Accessories',
   ELECTRICAL = 'Electrical & Plumbing',
-  ELECTRONICS = 'Electronics & Home Appliances'
+  ELECTRONICS = 'Electronics & Home Appliances',
+  LIFESTYLE = 'Lifestyle & Home'
+}
+
+export interface UserProfile {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  avatar?: string;
+  isSubscribed: boolean;
+  joinDate: string;
+  points: number;
 }
 
 export interface Review {
@@ -78,7 +90,7 @@ export interface UserDetails {
   area: string;
 }
 
-export type PaymentMethod = 'KNET' | 'CASH';
+export type PaymentMethod = 'KNET' | 'CASH' | 'CREDIT_CARD';
 
 export type OrderStatus = 'Pending' | 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled';
 

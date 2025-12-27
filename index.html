@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NSTORE.ONLINE | Premium E-Commerce</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#f0fdfa',
+                100: '#ccfbf1',
+                500: '#14b8a6',
+                600: '#0d9488',
+                700: '#0f766e',
+                900: '#134e4a',
+              },
+            },
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+              'fade-in-down': 'fadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+              'marquee': 'marquee 30s linear infinite',
+              'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeInDown: {
+                '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              marquee: {
+                '0%': { transform: 'translateX(0)' },
+                '100%': { transform: 'translateX(-50%)' },
+              },
+              pulseSoft: {
+                '0%, 100%': { opacity: '1' },
+                '50%': { opacity: '0.8' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              }
+            }
+          },
+        },
+      };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
+      .text-gradient { background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.10.1",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+</head>
+  <body class="bg-white text-gray-900 selection:bg-brand-500 selection:text-white">
+    <div id="root"></div>
+  </body>
+</html>

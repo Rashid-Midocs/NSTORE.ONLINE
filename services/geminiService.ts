@@ -22,15 +22,16 @@ export const getShoppingAdvice = async (userQuery: string): Promise<string> => {
 
   try {
     // Correctly calling generateContent with the model name and required parameters.
+    // Using gemini-3-pro-preview for complex reasoning tasks as per guidelines.
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-3-pro-preview',
       contents: userQuery,
       config: {
         systemInstruction: systemInstruction,
       }
     });
 
-    // Access the .text property directly from the response object.
+    // Access the .text property directly from the response object as per guidelines.
     return response.text || "I couldn't find a specific answer, but feel free to browse our categories!";
   } catch (error) {
     console.error("Gemini Error:", error);

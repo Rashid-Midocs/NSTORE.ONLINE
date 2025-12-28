@@ -2,11 +2,10 @@
 import { GoogleGenAI } from "@google/genai";
 import { PRODUCTS } from "../constants";
 
-// Initialize GoogleGenAI with the API key from environment variables as per guidelines.
-// The key is assumed to be valid and pre-configured.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 export const getShoppingAdvice = async (userQuery: string): Promise<string> => {
+  // Always initialize GoogleGenAI with a named parameter using process.env.API_KEY directly.
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
   const productContext = PRODUCTS.map(p => 
     `- ${p.name} (${p.category}): KD ${p.discountPrice || p.price}`
   ).join('\n');
@@ -22,17 +21,16 @@ export const getShoppingAdvice = async (userQuery: string): Promise<string> => {
   `;
 
   try {
-    // Directly call generateContent using the initialized ai client and model name.
+    // Correctly calling generateContent with the model name and required parameters.
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
       contents: userQuery,
       config: {
         systemInstruction: systemInstruction,
-        // Removed maxOutputTokens to follow guidelines regarding avoiding token blocking and proper thinking budget management.
       }
     });
 
-    // Access the .text property directly.
+    // Access the .text property directly from the response object.
     return response.text || "I couldn't find a specific answer, but feel free to browse our categories!";
   } catch (error) {
     console.error("Gemini Error:", error);
